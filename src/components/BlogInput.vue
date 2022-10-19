@@ -9,13 +9,9 @@
     />
 
     <div class="option">
-      <!-- <span @click="addIcon(0) , addClass(0)" class="img1"></span> -->
-      <!-- <span @click="addIcon(1) , addClass(1)" class="img2"></span> -->
-      <!-- <span @click="addIcon(2) , addClass(2)" class="img3"></span> -->
-
-      <span @click="addIcon(0)" class="img1"></span>
-      <span @click="addIcon(1)" class="img2"></span>
-      <span @click="addIcon(2)" class="img3"></span>
+      <span @click="addIcon(0), addClass(0)" class="img1"></span>
+      <span @click="addIcon(1), addClass(1)" class="img2"></span>
+      <span @click="addIcon(2), addClass(2)" class="img3"></span>
 
       <span @click="addItem" class="add-bt">
         <i class="fas fa-plus add-bt-icon"></i>
@@ -82,11 +78,14 @@ export default {
       newIcon.value = index;
     };
 
+    const addClass = () => {};
+
     return {
       newItem,
       addItem,
       addIcon,
       showModal,
+      addClass,
     };
   },
 };
@@ -128,14 +127,6 @@ export default {
   width: 220px;
   height: 50px;
   font-size: 0;
-}
-
-.img1:active,
-.img2:active,
-.img3:active {
-  outline: 3px solid rgb(141, 140, 125);
-
-  border-radius: 5px;
 }
 
 .img1 {
@@ -190,6 +181,12 @@ export default {
 .img3:hover {
   background: url("@/assets/images/third.png") no-repeat center;
   background-size: 30px 15px;
+}
+
+.img1:active,
+.img2:active,
+.img3:active {
+  outline: none;
 }
 
 .add-bt {
