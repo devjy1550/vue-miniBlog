@@ -41,7 +41,7 @@ export default {
     // vuex store 사용
     const store = useStore();
 
-    store.dispatch("fetchGetMemo");
+    store.dispatch("fetchReadMemo");
 
     const items = computed(() => store.getters.getMemoArr);
 

@@ -9,9 +9,9 @@
     />
 
     <div class="option">
-      <span @click="addIcon(0), addClass(0)" class="img1"></span>
-      <span @click="addIcon(1), addClass(1)" class="img2"></span>
-      <span @click="addIcon(2), addClass(2)" class="img3"></span>
+      <span @click="addIcon(0), addClass" class="img1" id="#img01"></span>
+      <span @click="addIcon(1), addClass" class="img2" id="#img02"></span>
+      <span @click="addIcon(2), addClass" class="img3" id="#img03"></span>
 
       <span @click="addItem" class="add-bt">
         <i class="fas fa-plus add-bt-icon"></i>
@@ -20,10 +20,10 @@
     <!-- 안내창 -->
     <ModalView v-bind:show="showModal" v-on:closemodal="showModal = false">
       <template #header>
-        <h3>안내창</h3>
+        <h3>-입력 요망-</h3>
       </template>
       <template #body>
-        <h2>내용을 작성하여주세요.</h2>
+        <h2>내용을 작성하시오.</h2>
       </template>
     </ModalView>
   </div>
@@ -78,14 +78,11 @@ export default {
       newIcon.value = index;
     };
 
-    const addClass = () => {};
-
     return {
       newItem,
       addItem,
       addIcon,
       showModal,
-      addClass,
     };
   },
 };
@@ -181,12 +178,6 @@ export default {
 .img3:hover {
   background: url("@/assets/images/third.png") no-repeat center;
   background-size: 30px 15px;
-}
-
-.img1:active,
-.img2:active,
-.img3:active {
-  outline: none;
 }
 
 .add-bt {
