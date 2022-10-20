@@ -67,7 +67,7 @@ const state = {
 const actions = {
   fetchReadMemo(context) {
     axios
-      .get("http://kjy3501.dothome.co.kr/page-miniblog/read.php")
+      .get("http://kjy3501.dothome.co.kr/page-miniMemo/read.php")
       .then((response) => {
         console.log(response.data);
         context.commit("READ_MEMO", response.data.result);
@@ -87,7 +87,7 @@ const actions = {
 
     axios
       .get(
-        `http://kjy3501.dothome.co.kr/page-miniblog/write.php?user=${addData.user}&title=${addData.title}&date=${addData.date}&icon=${addData.icon}`
+        `http://kjy3501.dothome.co.kr/page-miniMemo/write.php?user=${addData.user}&title=${addData.title}&date=${addData.date}&icon=${addData.icon}`
       )
       .then((response) => {
         // console.log(response.data);
@@ -108,7 +108,7 @@ const actions = {
     console.log("삭제", obj);
 
     axios
-      .get(`http://kjy3501.dothome.co.kr/page-miniblog/delete.php?id=${obj.id}`)
+      .get(`http://kjy3501.dothome.co.kr/page-miniMemo/delete.php?id=${obj.id}`)
       .then((response) => {
         console.log("서버측 회신", response.data);
         commit("DELETE_MEMO", obj);
@@ -127,7 +127,7 @@ const actions = {
     }
     axios
       .get(
-        `http://kjy3501.dothome.co.kr/page-miniblog/update.php?id=${obj.item.id}&complete=${complete}`
+        `http://kjy3501.dothome.co.kr/page-miniMemo/update.php?id=${obj.item.id}&complete=${complete}`
       )
       .then((response) => {
         console.log("업데이트", response.data);
@@ -141,7 +141,7 @@ const actions = {
     // 정상적으로 처리되었다면
     // 아래를 실행한다.
     axios
-      .get("http://kjy3501.dothome.co.kr/page-miniblog/delete.php?id=all")
+      .get("http://kjy3501.dothome.co.kr/page-miniMemo/delete.php?id=all")
       .then((response) => {
         console.log("전체삭제 ", response.data);
         commit("CLEAR_MEMO");
@@ -183,7 +183,7 @@ const mutations = {
     // 가지고 와서 목록 1개를 추가한다.
     axios
       .get(
-        `http://kjy3501.dothome.co.kr/page-miniblog/get.php?user=${payload.user}`
+        `http://kjy3501.dothome.co.kr/page-miniMemo/get.php?user=${payload.user}`
       )
       .then((response) => {
         // console.log('입력완료', response.data.result)
