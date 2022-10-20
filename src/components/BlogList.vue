@@ -45,10 +45,10 @@ export default {
 
     const items = computed(() => store.getters.getMemoArr);
 
-    const removeMemo = (item, index) => {
+    const removeMemo = (id, index) => {
       // context.emit('removeitem', item, index);
       // store.commit('DELETE_MEMO', {item, index})
-      store.dispatch("fetchDeleteMemo", { item, index });
+      store.dispatch("fetchDeleteMemo", { id, index });
     };
 
     const updateMemo = (item, index) => {

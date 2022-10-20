@@ -9,39 +9,47 @@
     />
 
     <div class="option">
-      <span @click="addIcon(0), addClass" class="img1" id="#img01"></span>
-      <span @click="addIcon(1), addClass" class="img2" id="#img02"></span>
-      <span @click="addIcon(2), addClass" class="img3" id="#img03"></span>
+      <div class="img-list">
+        <span @click="addIcon(0)" class="img1 img-active"></span>
+        <span @click="addIcon(1)" class="img2"></span>
+        <span @click="addIcon(2)" class="img3"></span>
+      </div>
 
       <span @click="addItem" class="add-bt">
         <i class="fas fa-plus add-bt-icon"></i>
       </span>
     </div>
     <!-- 안내창 -->
-    <ModalView v-bind:show="showModal" v-on:closemodal="showModal = false">
+    <AlertView v-bind:show="showModal" v-on:closemodal="showModal = false">
       <template #header>
         <h3>-입력 요망-</h3>
       </template>
       <template #body>
         <h2>내용을 작성하시오.</h2>
       </template>
-    </ModalView>
+    </AlertView>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 import { useStore } from "vuex";
 
-import ModalView from "@/components/common/ModalVue.vue";
+import AlertView from "@/components/common/AlertVue.vue";
 
 export default {
   components: {
-    ModalView,
+    AlertView,
   },
 
   setup() {
+    let imgs;
+    onMounted(() => {
+      imgs = document.querySelectorAll(".img-list > span");
+      console.log(imgs);
+    });
+
     const store = useStore();
 
     const newItem = ref("");
@@ -72,10 +80,15 @@ export default {
     // 내용 재설정
     const resetItem = () => {
       newItem.value = "";
+      addIcon(0);
     };
 
     const addIcon = (index) => {
       newIcon.value = index;
+      for (let i = 0; i < imgs.length; i++) {
+        imgs[i].classList.remove("img-active");
+      }
+      imgs[index].classList.add("img-active");
     };
 
     return {
@@ -126,6 +139,10 @@ export default {
   font-size: 0;
 }
 
+.img-list {
+  display: inline-block;
+}
+
 .img1 {
   position: relative;
   display: inline-block;
@@ -134,7 +151,8 @@ export default {
   line-height: 50px;
   font-size: 0;
   cursor: pointer;
-  background: url("@/assets/images/first-off.png") no-repeat center;
+  background: url("@/assets/images/first.png") no-repeat center;
+  opacity: 0.3;
   background-size: 30px 15px;
   margin-left: 5px;
 }
@@ -147,7 +165,8 @@ export default {
   line-height: 50px;
   font-size: 0;
   cursor: pointer;
-  background: url("@/assets/images/second-off.png") no-repeat center;
+  background: url("@/assets/images/second.png") no-repeat center;
+  opacity: 0.3;
   background-size: 30px 15px;
   margin-left: 5px;
 }
@@ -160,24 +179,16 @@ export default {
   line-height: 50px;
   font-size: 0;
   cursor: pointer;
-  background: url("@/assets/images/third-off.png") no-repeat center;
+  background: url("@/assets/images/third.png") no-repeat center;
+  opacity: 0.3;
   background-size: 30px 15px;
   margin-left: 5px;
 }
-
-.img1:hover {
-  background: url("@/assets/images/first.png") no-repeat center;
-  background-size: 30px 15px;
+.img-active {
+  opacity: 1;
 }
-
-.img2:hover {
-  background: url("@/assets/images/second.png") no-repeat center;
-  background-size: 30px 15px;
-}
-
-.img3:hover {
-  background: url("@/assets/images/third.png") no-repeat center;
-  background-size: 30px 15px;
+.img-list > span:hover {
+  opacity: 1;
 }
 
 .add-bt {
